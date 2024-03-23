@@ -4,7 +4,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 # Определите путь к папке с изображениями
-image_folder = "путь_к_папке_с_изображениями"
+image_folder = "C:\\Users\\user\\Desktop\\memo"
 
 # Создайте список файлов изображений в папке
 image_files = glob.glob(os.path.join(image_folder, "*.jpg"))  # Можете изменить расширение файла, если требуется
@@ -14,7 +14,7 @@ window = tk.Tk()
 
 # Создайте виджет для отображения изображений
 image_label = tk.Label(window)
-image_label.pack()
+image_label.pack(fill='both', expand=True)
 
 # Функция для отображения следующего изображения
 def show_next_image():
@@ -25,8 +25,8 @@ def show_next_image():
     # Откройте изображение с помощью библиотеки PIL
     image = Image.open(current_image)
     
-    # Измените размер изображения, если требуется
-    # image = image.resize((width, height))
+    # Измените размер изображения, чтобы соответствовать размерам окна
+    image.thumbnail((window.winfo_width(), window.winfo_height()))
     
     # Создайте объект ImageTk для отображения в окне tkinter
     image_tk = ImageTk.PhotoImage(image)
